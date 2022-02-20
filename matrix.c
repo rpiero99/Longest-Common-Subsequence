@@ -4,18 +4,22 @@
 
 #include "matrix.h"
 
-char **allocate_matrix(char **matrix, int rows, int cols) {
+int **allocate_matrix(int **matrix, int rows, int cols) {
+    rows = rows+1;
+    cols = cols+1;
 
-    matrix = (char **) calloc(rows, sizeof(char *));
+    matrix = (int **) calloc(rows, sizeof(int *));
     for (int i = 0; i < rows; i++) {
-        matrix[i] = (char *) calloc(cols, sizeof(char));
+        matrix[i] = (int *) calloc(cols, sizeof(int));
     }
     return matrix;
 }
 
-void free_matrix(char **matrix, int columns) {
+void free_matrix(int **matrix, int cols) {
+    cols = cols+1;
+
     if (matrix != NULL) {
-        for (int i = 0; i < columns; ++i) {
+        for (int i = 0; i < cols; ++i) {
             free(matrix[i]);
             matrix[i] = NULL;
         }

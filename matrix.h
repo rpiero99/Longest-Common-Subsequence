@@ -7,8 +7,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-char **allocate_matrix(char **matrix, int columns, int rows);
-void free_matrix(char **matrix, int columns);
+int **allocate_matrix(int **matrix, int rows, int columns);
+void free_matrix(int **matrix, int columns);
 
 
 #endif //RICCARDOPIERINI105131_MATRIX_H
