@@ -41,6 +41,11 @@ int getFileLength(FILE *fileOpen){
     return length;
 }
 
-void writeFile(char *path, char* output){
-
+void writeFileInBinary(char *path, char* output){
+    FILE *fileOpen = fopen(path, "wb");
+    if(fileOpen == NULL){
+        fputs("File not found", stdin);
+        exit(1);
+    }
+    fwrite(output, sizeof (char), strlen(output), fileOpen );
 }
