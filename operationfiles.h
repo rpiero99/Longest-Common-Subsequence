@@ -7,8 +7,9 @@
 
 #include <stdio.h>
 
-char *openFile(char *path);
-int fileLength(FILE *fileOpen);
+char *openFileInBinary(char *path);
+char *readFileInBinary(char *buffer, size_t dim, size_t length,  FILE *fileOpen);
+int getFileLength(FILE *fileOpen);
 void writeFile(char *path, char* output);
 
 #endif //RICCARDOPIERINI105131_OPERATIONFILES_H

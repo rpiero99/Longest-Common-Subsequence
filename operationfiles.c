@@ -6,35 +6,41 @@
 #include <memory.h>
 #include "operationfiles.h"
 
-char *openFile(char *path){
+char *openFileInBinary(char *path){
     FILE *fileOpen;
     char *buffer;
 
     fileOpen = fopen(path, "rb");
-    int length = fileLength(fileOpen);
+    int length = getFileLength(fileOpen);
 
     buffer = (char *) malloc(sizeof(char) * (length + 1));
     if (!buffer) {
         fclose(fileOpen);
-        fputs("memory allocation fails", stderr);
+        fputs("Memory allocation failed", stderr);
         exit(1);
     }
-    size_t read_size = fread(buffer, sizeof(char), length, fileOpen);
+    readFileInBinary(buffer, sizeof (char), length, fileOpen);
+
+    fclose(fileOpen);
+    return buffer;
+}
+char *readFileInBinary(char *buffer, size_t dim, size_t length,  FILE *fileOpen){
+    size_t read_size = fread(buffer, dim, length, fileOpen);
     if (length != read_size) {
         free(buffer);
         fclose(fileOpen);
         buffer = NULL;
         return NULL;
     }
-
-    fclose(fileOpen);
-    return buffer;
 }
-
-int fileLength(FILE *fileOpen){
+int getFileLength(FILE *fileOpen){
     fseek(fileOpen, 0L, SEEK_END);
     int length = ftell(fileOpen);
     rewind(fileOpen);
 
     return length;
+}
+
+void writeFile(char *path, char* output){
+
 }
