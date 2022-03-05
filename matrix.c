@@ -15,6 +15,14 @@ int **allocate_matrix(int **matrix, int rows, int cols) {
     return matrix;
 }
 
+extractlcs_matrix create_extractlcs_matrix(int **matrix, int rows, int columns){
+    rows = rows+1;
+    columns = columns+1;
+
+    struct Mat_struct matStruct = {matrix, &columns, &rows};
+    return matStruct;
+}
+
 void free_matrix(int **matrix, int cols) {
     cols = cols+1;
 
