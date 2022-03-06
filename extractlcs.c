@@ -2,23 +2,24 @@
 // Created by Riccardo on 05/03/2022.
 //
 
+#include <malloc.h>
 #include "extractlcs.h"
 
-void fill_matrix (char* file1, char* file2, extractlcs_matrix *matrix){
-    int rows = *matrix->rows;
-    int columns = *matrix->colums;
+void fill_matrix (const char* file1, const char* file2, extractlcs_matrix *matrix){
+    int c = *matrix->columns;
+    int r = *matrix->rows;
 
     //filling the first column and the first row with 0s.
-    for(int i=0; i<= rows; i++){
+    for(int i=0; i < r; i++){
         matrix->matrix[i][0] = 0;
     }
-    for(int i=0; i<=columns; i++){
+    for(int i=0; i < c; i++){
         matrix->matrix[0][i] = 0;
     }
 
     //filling the resting matrix
-    for(int i=1; i<=rows; i++){
-        for(int j=1; j<=columns; j++){
+    for(int i=1; i <= r; i++){
+        for(int j=1; j <= c; j++){
             if(file1[i-1] == file2[j-1]) {
                 matrix->matrix[i][j] = matrix->matrix[i - 1][j - 1] + 1;
             } else if(matrix->matrix[i - 1][j] >= matrix->matrix[i][j - 1]){
@@ -29,8 +30,27 @@ void fill_matrix (char* file1, char* file2, extractlcs_matrix *matrix){
         }
     }
 
-    char* result_exctractlcs (extractlcs_matrix* matrix, char* output){
+}
+void result_exctractlcs (const char* file1, const char* file2, extractlcs_matrix* matrix, char* output){
+    int rows = *matrix->rows;
+    int columns = *matrix->columns;
+    int index = matrix->matrix[rows][columns];
+    output = (char* ) calloc(index+1,sizeof (char));
 
+    output[index] = '\0';
+
+    int i = rows, j = columns;
+    while (i > 0 && j > 0) {
+        if (file1[i - 1] == file2[j - 1]) {
+            output[index - 1] = file1[i - 1];
+            i--;
+            j--;
+            index--;
+        }
+
+        else if (matrix->matrix[i - 1][j] > matrix->matrix[i][j - 1])
+            i--;
+        else
+            j--;
     }
-
 }

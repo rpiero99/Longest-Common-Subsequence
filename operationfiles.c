@@ -8,12 +8,14 @@
 
 char *openFileInBinary(char *path){
     FILE *fileOpen;
-    char *buffer;
+    char *buffer = NULL;
 
     fileOpen = fopen(path, "rb");
-    int length = getFileLength(fileOpen);
+    if (fileOpen==NULL)
+        perror("File not found"), exit(1);
+    long length = getFileLength(fileOpen);
 
-    buffer = (char *) malloc(sizeof(char) * (length + 1));
+    buffer = calloc(length+1, sizeof (char));
     if (!buffer) {
         fclose(fileOpen);
         fputs("Memory allocation failed", stderr);
@@ -33,9 +35,9 @@ char *readFileInBinary(char *buffer, size_t dim, size_t length,  FILE *fileOpen)
         return NULL;
     }
 }
-int getFileLength(FILE *fileOpen){
+long getFileLength(FILE *fileOpen){
     fseek(fileOpen, 0L, SEEK_END);
-    int length = ftell(fileOpen);
+    long length = ftell(fileOpen);
     rewind(fileOpen);
 
     return length;

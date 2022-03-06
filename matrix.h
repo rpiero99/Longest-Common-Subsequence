@@ -9,7 +9,7 @@
 #include "extractlcs.h"
 
 int **allocate_matrix(int **matrix, int rows, int columns);
-extractlcs_matrix create_extractlcs_matrix(int **matrix, int rows, int columns);
+extractlcs_matrix create_extractlcs_matrix(int **matrix, int *rows, int *columns);
 void free_matrix(int **matrix, int columns);
 
 

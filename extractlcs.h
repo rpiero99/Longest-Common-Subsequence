@@ -5,12 +5,12 @@
 
 typedef struct Mat_struct {
     int** matrix;
-    int* colums;
+    int* columns;
     int* rows;
 } extractlcs_matrix;
 
 
-void fill_matrix (char* file1, char* file2, extractlcs_matrix* matrix);
-char* result_exctractlcs (extractlcs_matrix* matrix, char* output);
+void fill_matrix (const char* file1, const char* file2, extractlcs_matrix* matrix);
+void result_exctractlcs (const char* file1, const char* file2, extractlcs_matrix* matrix, char* output);
 
 #endif //RICCARDOPIERINI105131_EXTRACTLCS_H

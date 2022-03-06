@@ -9,7 +9,7 @@
 
 char *openFileInBinary(char *path);
 char *readFileInBinary(char *buffer, size_t dim, size_t length,  FILE *fileOpen);
-int getFileLength(FILE *fileOpen);
+long getFileLength(FILE *fileOpen);
 void writeFileInBinary(char *path, char* output);
 
 #endif //RICCARDOPIERINI105131_OPERATIONFILES_H
