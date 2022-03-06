@@ -10,6 +10,7 @@ typedef struct Mat_struct {
 } extractlcs_matrix;
 
 
-void exctractlcs (char* file1, char* file2, char* file_output, extractlcs_matrix matrix);
+void fill_matrix (char* file1, char* file2, extractlcs_matrix* matrix);
+char* result_exctractlcs (extractlcs_matrix* matrix, char* output);
 
 #endif //RICCARDOPIERINI105131_EXTRACTLCS_H
