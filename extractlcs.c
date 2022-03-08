@@ -18,8 +18,8 @@ void fill_matrix (const char* file1, const char* file2, extractlcs_matrix *matri
     }
 
     //filling the resting matrix
-    for(int i=1; i <= r; i++){
-        for(int j=1; j <= c; j++){
+    for(int i=1; i < r; i++){
+        for(int j=1; j < c; j++){
             if(file1[i-1] == file2[j-1]) {
                 matrix->matrix[i][j] = matrix->matrix[i - 1][j - 1] + 1;
             } else if(matrix->matrix[i - 1][j] >= matrix->matrix[i][j - 1]){
@@ -31,9 +31,9 @@ void fill_matrix (const char* file1, const char* file2, extractlcs_matrix *matri
     }
 
 }
-void result_exctractlcs (const char* file1, const char* file2, extractlcs_matrix* matrix, char* output){
-    int rows = *matrix->rows;
-    int columns = *matrix->columns;
+char *result_exctractlcs (const char* file1, const char* file2, extractlcs_matrix* matrix, char* output){
+    int rows = *matrix->rows -1;
+    int columns = *matrix->columns -1;
     int index = matrix->matrix[rows][columns];
     output = (char* ) calloc(index+1,sizeof (char));
 
@@ -53,4 +53,5 @@ void result_exctractlcs (const char* file1, const char* file2, extractlcs_matrix
         else
             j--;
     }
+    return output;
 }

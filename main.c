@@ -15,7 +15,7 @@ int main() {
     extractlcs_matrix matrix = create_extractlcs_matrix(a, &lengthFirst,&lengthSecond);
     fill_matrix(result, result2, &matrix);
     char *output = NULL;
-    result_exctractlcs(result, result2, &matrix, output);
+    output = result_exctractlcs(result, result2, &matrix, output);
 
     writeFileInBinary("C:\\Users\\Riccardo\\Desktop\\result.txt", output);
     free_matrix(a, strlen(result2));

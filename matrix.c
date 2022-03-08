@@ -24,7 +24,6 @@ extractlcs_matrix create_extractlcs_matrix(int **matrix, int *rows, int *columns
 }
 
 void free_matrix(int **matrix, int cols) {
-    cols = cols+1;
 
     if (matrix != NULL) {
         for (int i = 0; i < cols; ++i) {
