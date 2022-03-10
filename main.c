@@ -3,10 +3,15 @@
 #include "operationfiles.h"
 #include "extractlcs.h"
 #include "matrix.h"
-int main() {
 
-    char *result2 = openFileInBinary("C:\\Users\\Riccardo\\Desktop\\proba.txt");
-    char *result = openFileInBinary("C:\\Users\\Riccardo\\Desktop\\proba2.txt");
+static void number_of_arguments_incorrect() {
+    printf("Incorrect number of arguments! You have to insert only 3 files (2 for input and one of output)");
+    exit(EXIT_FAILURE);
+}
+
+void exctractlcs(char **argv) {
+    char *result2 = openFileInBinary(argv[0]);
+    char *result = openFileInBinary(argv[1]);
 
     int **a = NULL;
     int lengthFirst = strlen(result);
@@ -17,9 +22,21 @@ int main() {
     char *output = NULL;
     output = result_exctractlcs(result, result2, &matrix, output);
 
-    writeFileInBinary("C:\\Users\\Riccardo\\Desktop\\result.txt", output);
+    writeFileInBinary(argv[2], output);
     free_matrix(a, strlen(result2));
     free(result);
     free(result2);
+}
+int main(int argc, char **argv) {
+
+    if(argc==3){
+        exctractlcs(argv);
+    }
+    else
+        number_of_arguments_incorrect();
     return 0;
 }
+
+
+
+
