@@ -10,8 +10,8 @@ static void number_of_arguments_incorrect() {
 }
 
 void exctractlcs(char **argv) {
-    char *result2 = openFileInBinary(argv[0]);
     char *result = openFileInBinary(argv[1]);
+    char *result2 = openFileInBinary(argv[2]);
 
     int **a = NULL;
     int lengthFirst = strlen(result);
@@ -22,14 +22,14 @@ void exctractlcs(char **argv) {
     char *output = NULL;
     output = result_exctractlcs(result, result2, &matrix, output);
 
-    writeFileInBinary(argv[2], output);
+    writeFileInBinary(argv[3], output);
     free_matrix(a, strlen(result2));
     free(result);
     free(result2);
 }
 int main(int argc, char **argv) {
 
-    if(argc==3){
+    if(argc==4){
         exctractlcs(argv);
     }
     else
