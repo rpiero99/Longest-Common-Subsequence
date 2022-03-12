@@ -13,6 +13,8 @@ void exctractlcs(char **argv) {
     char *result = openFileInBinary(argv[1]);
     char *result2 = openFileInBinary(argv[2]);
 
+    set_upper_case(result);
+    set_upper_case(result2);
     int **a = NULL;
     int lengthFirst = strlen(result);
     int lengthSecond = strlen(result2);

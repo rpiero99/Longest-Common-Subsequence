@@ -3,6 +3,8 @@
 //
 
 #include <malloc.h>
+#include <memory.h>
+#include <ctype.h>
 #include "extractlcs.h"
 
 void fill_matrix (const char* file1, const char* file2, extractlcs_matrix *matrix){
@@ -31,6 +33,12 @@ void fill_matrix (const char* file1, const char* file2, extractlcs_matrix *matri
     }
 
 }
+
+void set_upper_case (char *string){
+    for(int i = 0; i<strlen(string); i++)
+        string[i] = toupper(string[i]);
+}
+
 char *result_exctractlcs (const char* file1, const char* file2, extractlcs_matrix* matrix, char* output){
     int rows = *matrix->rows -1;
     int columns = *matrix->columns -1;

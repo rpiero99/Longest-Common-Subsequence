@@ -11,6 +11,7 @@ typedef struct Mat_struct {
 
 
 void fill_matrix (const char* file1, const char* file2, extractlcs_matrix* matrix);
+void set_upper_case (char *string);
 char *result_exctractlcs (const char* file1, const char* file2, extractlcs_matrix* matrix, char* output);
 
 #endif //RICCARDOPIERINI105131_EXTRACTLCS_H
